@@ -1,2 +1,2 @@
 # gapShapChatApp
-this react js and firebase base simple chat app
+this chat app is based on react js and google firebase.
