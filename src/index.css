@@ -1,0 +1,27 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+}
+
+.rejister-form {
+  border-radius: 10px;
+}
+
+.bg-color1 {
+  background-color: #efdee1;
+}
+
+.bg-color2 {
+  background-color: #954680;
+}
+
+.btn-signup {
+  background-color: #643066;
+  color: white;
+}
