@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import upload from "../../public/images/upload.png"
+import upload from "../images/upload.png"
 
 const userFields = {
   username: "",
@@ -38,7 +38,7 @@ function Rejister() {
             <input type="email" placeholder='Email' name='email' value={data.email} onChange={(e) => handleChange(e)} className="form-control mb-3" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" />
             <input type="password" placeholder='Password' name='password' value={data.password} onChange={(e) => handleChange(e)} className="form-control mb-3" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" />
             <label htmlFor="formFileSm" className="form-label mb-3">
-              <img src={upload} />
+              <img src={upload} style={{color: "#213d4e"}}/>
             </label> <span style={{ marginLeft: "1rem" }}>Upload Profile</span>
             <input className="form-control form-control-sm" id="formFileSm" type="file" onChange={(e) => setData({ ...data, file: e.target.files[0] })} encType="multipart/form-data" style={{ display: "none" }} />
             <button type='submit' className="btn btn-sm w-100 mt-2 btn-signup p-2">
