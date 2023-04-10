@@ -1,5 +1,10 @@
 import React, { useState } from 'react'
 import upload from "../images/upload.png"
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { auth, storage, db } from '../firebase';
+import { doc, setDoc } from "firebase/firestore"
+import { Link, useNavigate } from 'react-router-dom';
 
 const userFields = {
   username: "",
@@ -9,19 +14,48 @@ const userFields = {
 }
 
 function Rejister() {
-
   const [data, setData] = useState(userFields);
   const [spinner, setSpinner] = useState(false)
   const [btnText, setBtnText] = useState(true)
+  const [err, setErr] = useState(false)
+  
+  const navigate = useNavigate()
 
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value })
   }
 
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log(data)
+    const { username, email, password, file } = data
+
+    try {
+      const res = await createUserWithEmailAndPassword(auth, email, password);
+      const storageRef = ref(storage, username);
+      const uploadTask = uploadBytesResumable(storageRef, file);
+      uploadTask.on((error) => {
+        setErr(true)
+      }, () => {
+        getDownloadURL(uploadTask.snapshot.ref).then(async(downloadURL) => {
+          console.log('File available at', downloadURL);
+          await updateProfile(res.user, {
+            displayName: username,
+            photoURL: downloadURL,
+          })
+          console.log(res)
+          await setDoc(doc(db, "users", res.user.uid),{
+            displayName: username,
+            email: email,
+            PhotoURL: downloadURL
+          })
+          await setDoc(doc(db, "userChats", res.user.uid),{})
+          navigate("/")
+        });
+      });
+    } catch (err) {
+      setErr(true)
+    }
+
     setData(userFields)
     setBtnText(false)
     setSpinner(true)
@@ -38,17 +72,17 @@ function Rejister() {
             <input type="email" placeholder='Email' name='email' value={data.email} onChange={(e) => handleChange(e)} className="form-control mb-3" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" />
             <input type="password" placeholder='Password' name='password' value={data.password} onChange={(e) => handleChange(e)} className="form-control mb-3" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" />
             <label htmlFor="formFileSm" className="form-label mb-3">
-              <img src={upload} style={{color: "#213d4e"}}/>
+              <img src={upload} style={{ color: "#213d4e" }} />
             </label> <span style={{ marginLeft: "1rem" }}>Upload Profile</span>
             <input className="form-control form-control-sm" id="formFileSm" type="file" onChange={(e) => setData({ ...data, file: e.target.files[0] })} encType="multipart/form-data" style={{ display: "none" }} />
             <button type='submit' className="btn btn-sm w-100 mt-2 btn-signup p-2">
               <span>{btnText ? "Sign Up" : ""}</span>
-              <span class="d-flex justify-content-center">
+              <span className="d-flex justify-content-center">
                 <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true" style={{ display: spinner ? "block" : "none" }}></span>
               </span>
             </button>
-            <p className='mt-2 text-center'> Have an account already ?
-              <a href="">Login</a>
+            {err && <span>Something Went Wrong !</span>}
+            <p className='mt-2 text-center'> Have an account already ?<Link to="/login">Login</Link>
             </p>
           </form>
         </div>
