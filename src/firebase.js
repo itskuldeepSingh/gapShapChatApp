@@ -4,12 +4,12 @@ import { getStorage } from "firebase/storage";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDX_SjAWg2Us6EQSvOz2j0L7a28B_EFJNk",
-  authDomain: "gapshap-1d014.firebaseapp.com",
-  projectId: "gapshap-1d014",
-  storageBucket: "gapshap-1d014.appspot.com",
-  messagingSenderId: "85532928048",
-  appId: "1:85532928048:web:6e0287a935e2c851ab25f5"
+  apiKey: "AIzaSyApftLKpIzSlBJ79ioS2oDFSBV8NbgBuhE",
+  authDomain: "gapshapp-e2cd5.firebaseapp.com",
+  projectId: "gapshapp-e2cd5",
+  storageBucket: "gapshapp-e2cd5.appspot.com",
+  messagingSenderId: "435887066816",
+  appId: "1:435887066816:web:117889c0490dcf8a246725"
 };
 
 export const app = initializeApp(firebaseConfig)

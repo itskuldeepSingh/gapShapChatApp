@@ -40,7 +40,7 @@ const Home = () => {
                     showSidebar ? "d-none d-md-block" : ""
                   } main-screen`}
                 >
-                    <Chat/>
+                  <Chat/>
                 </div>
               </div>
             </div>

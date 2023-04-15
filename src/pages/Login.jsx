@@ -10,10 +10,9 @@ const userFields = {
 
 function Login() {
   const navigate = useNavigate();
-
   const [data, setData] = useState(userFields);
   const [spinner, setSpinner] = useState(false);
-  const [btnText, setBtnText] = useState("Sign Up");
+  const [btnText, setBtnText] = useState("Log In");
   
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
@@ -21,19 +20,17 @@ function Login() {
   
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
     const { email, password } = data;
     setBtnText("");
     setSpinner(true);
     try {
       await signInWithEmailAndPassword(auth, email, password)
       navigate("/home")
-
     } catch (error) {
       console.error(error);
     }
     setData(userFields);
-    setBtnText("Sign Up");
+    setBtnText("Log In");
     setSpinner(false);
   };
 
@@ -71,7 +68,7 @@ function Login() {
               </span>
             </button>
             <p className="mt-2 text-center">
-              Don't have an account? <Link to="/signup">Rejister</Link>
+              Don't have an account? <Link className='link' to="/signup">Rejister</Link>
             </p>
           </form>
         </div>

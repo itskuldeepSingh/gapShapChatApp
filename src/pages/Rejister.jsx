@@ -37,7 +37,6 @@ function Rejister() {
         setErr(true)
       }, () => {
         getDownloadURL(uploadTask.snapshot.ref).then(async(downloadURL) => {
-          console.log('File available at', downloadURL);
           await updateProfile(res.user, {
             displayName: username,
             photoURL: downloadURL,
@@ -46,16 +45,16 @@ function Rejister() {
           await setDoc(doc(db, "users", res.user.uid),{
             displayName: username,
             email: email,
-            PhotoURL: downloadURL
+            PhotoURL: downloadURL,
+            uid: res.user.uid
           })
           await setDoc(doc(db, "userChats", res.user.uid),{})
-          navigate("/")
+          navigate("/home")
         });
       });
     } catch (err) {
       setErr(true)
     }
-
     setData(userFields)
     setBtnText(false)
     setSpinner(true)
@@ -82,7 +81,7 @@ function Rejister() {
               </span>
             </button>
             {err && <span>Something Went Wrong !</span>}
-            <p className='mt-2 text-center'> Have an account already ?<Link to="/login">Login</Link>
+            <p className='mt-2 text-center'> Have an account already ?<Link className='link' to="/login"> Login</Link>
             </p>
           </form>
         </div>

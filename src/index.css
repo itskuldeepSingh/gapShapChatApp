@@ -9,6 +9,15 @@
   height: 24px;
 }
 
+.link {
+  color: white;
+  text-decoration: none;
+}
+
+.chat-screen {
+  height: 100%;
+}
+
 .rejister-form {
   border-radius: 10px;
 }
@@ -29,7 +38,7 @@
   background-color: #213d4e;
 }
 
-.btn-signup {
+.btn-signup, .btn-signup:hover {
   background-color: #213d4e;
   color: white;
 }
@@ -137,6 +146,7 @@
   height: 72vh;
   background-color: #f0e7bdde;
   padding: 1rem;
+  overflow-y: scroll;
 }
 
 .input {
@@ -194,13 +204,13 @@
   border-radius: 10px;
 }
 
-.message-Content p {
+/* .message-Content p {
   background-color: white;
   color: black;
-  padding: 0.4rem 0.8rem;
+  
   border-radius: 0px 10px 10px 10px;
-  width: max-content;
-}
+  
+} */
 
 .message.owner{
   display: flex;
@@ -215,9 +225,23 @@
 }
 
 .message-Content p {
+  background-color: white;
+  color: #17464f;
+  border-radius: 10px 0px 10px 10px;
+  padding: 0.4rem 0.8rem;
+  width: max-content;
+  font-weight: 500;
+}
+
+.message-Content.owner p {
   background-color: #17464f;
   color: white;
   border-radius: 10px 0px 10px 10px;
+  padding: 0.4rem 0.8rem;
+  width: max-content;
 }
 
+.lastMessage {
+  color: rgb(242, 226, 226);
+}
 
