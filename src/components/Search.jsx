@@ -76,7 +76,7 @@ function Search() {
           <span className='text-white fw-bold'>{user.displayName}</span>
         </div>
       </div>}
-      <hr className='mt-0' style={{ color: "white" }} />
+      <hr className='mt-0 mb-0' style={{ color: "white" }} />
     </>
   )
 }

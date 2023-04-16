@@ -24,7 +24,7 @@ function Message({ msg }) {
         <span>Just Now</span>
     </div>
     <div className={`message-Content ${msg?.senderId === currentUser.uid && "owner"}`}>
-        <p>{msg?.text}</p>
+        <p className='text-wrap'>{msg?.text}</p>
         {msg.img && <img className='mb-2' src={msg?.img} alt="" />}
     </div>
    </div>

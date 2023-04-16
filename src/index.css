@@ -72,7 +72,6 @@
   width: 20px;
 }
 
-
 .navbar {
   display: flex;
   align-items: center;
@@ -105,11 +104,11 @@
 }
 
 .chat-image {
-  width: 60px;
-  height: 55px;
+  width: 55px;
+  height: 50px;
   border-radius: 50%;
   margin: 0.2rem 0.2rem;
-  padding: 0rem;
+  padding: 0.2rem;
   object-fit: cover;
 }
 
@@ -143,7 +142,7 @@
 }
 
 .chat-window {
-  height: 72vh;
+  height: 69vh;
   background-color: #f0e7bdde;
   padding: 1rem;
   overflow-y: scroll;
@@ -204,13 +203,6 @@
   border-radius: 10px;
 }
 
-/* .message-Content p {
-  background-color: white;
-  color: black;
-  
-  border-radius: 0px 10px 10px 10px;
-  
-} */
 
 .message.owner{
   display: flex;

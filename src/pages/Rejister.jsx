@@ -41,7 +41,6 @@ function Rejister() {
             displayName: username,
             photoURL: downloadURL,
           })
-          console.log(res)
           await setDoc(doc(db, "users", res.user.uid),{
             displayName: username,
             email: email,

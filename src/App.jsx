@@ -6,16 +6,12 @@ import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
 
 function App() {
-  const currentUser = useContext(AuthContext)
-
-  if (!currentUser) {
-    return <Navigate to="/login" />;
-  } 
+  const currentUser = useContext(AuthContext);
 
   return (
     <Router>
       <Routes>
-          <Route path="/home" element={<Home /> }/>
+          <Route path="/home" element={ currentUser ? <Home /> : <Navigate to="/login" />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Rejister />} />
           <Route path="*" element={<Login /> }/>

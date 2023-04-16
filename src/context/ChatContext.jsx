@@ -6,6 +6,7 @@ export const ChatContext = createContext();
 export const ChatContextProvider = ({children}) => {
     const { currentUser } = useContext(AuthContext)
     const INITIAL_STATE = {
+        showSidebar: false,
         chatId: "",
         user: {}
     }
@@ -19,6 +20,11 @@ export const ChatContextProvider = ({children}) => {
                         currentUser.uid > action.payload.uid 
                         ? currentUser.uid + action.payload.uid 
                         : action.payload.uid + currentUser.uid
+                }
+            case "TOGGLE_SIDEBAR" :
+                return {
+                    ...state,
+                    showSidebar: !state.showSidebar
                 }
             default : return state;
         }
